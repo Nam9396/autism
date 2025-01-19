@@ -38,7 +38,7 @@ function NavLink({
   isAnchorLink = false,
 }) {
   return (
-    <Link
+    <a
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
@@ -55,7 +55,7 @@ function NavLink({
           {tag}
         </Tag>
       )}
-    </Link>
+    </a>
   )
 }
 
