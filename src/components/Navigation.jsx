@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion'
-
 import { Button } from '@/components/Button'
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
@@ -38,7 +37,7 @@ function NavLink({
   isAnchorLink = false,
 }) {
   return (
-    <a
+    <Link
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
@@ -55,7 +54,7 @@ function NavLink({
           {tag}
         </Tag>
       )}
-    </a>
+    </Link>
   )
 }
 
