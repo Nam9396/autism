@@ -39,7 +39,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      aria-current={active ? 'page' : undefined}
+      // aria-current={active ? 'page' : undefined}
       className={clsx(
         'flex justify-between gap-2 py-1 pr-3 text-sm transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
