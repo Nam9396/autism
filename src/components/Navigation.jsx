@@ -37,31 +37,13 @@ function NavLink({
   tag,
   active = false,
   isAnchorLink = false,
+  router
 }) {
 
   return (
-    <Link
-      href={href}
-      aria-current={active ? 'page' : undefined}
-      className={clsx(
-        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
-        isAnchorLink ? 'pl-7' : 'pl-4',
-        active
-          ? 'text-zinc-900 font-semibold'
-          : 'text-zinc-900 hover:text-green-900 hover:bg-green-100 hover:rounded-md',
-      )}
-    >
-      <span className="truncate">{children}</span>
-      {tag && (
-        <Tag variant="small" color="zinc">
-          {tag}
-        </Tag>
-      )}
-    </Link>
-    
-    // <button 
-    //   type="button" 
-    //   onClick={() => router.push(href)}
+    // <Link
+    //   href={href}
+    //   aria-current={active ? 'page' : undefined}
     //   className={clsx(
     //     'flex justify-between gap-2 py-1 pr-3 text-sm transition',
     //     isAnchorLink ? 'pl-7' : 'pl-4',
@@ -70,8 +52,27 @@ function NavLink({
     //       : 'text-zinc-900 hover:text-green-900 hover:bg-green-100 hover:rounded-md',
     //   )}
     // >
-    //     <span className="truncate">{children}</span>
-    // </button>
+    //   <span className="truncate">{children}</span>
+    //   {tag && (
+    //     <Tag variant="small" color="zinc">
+    //       {tag}
+    //     </Tag>
+    //   )}
+    // </Link>
+    
+    <button 
+      type="button" 
+      onClick={() => router.push(href)}
+      className={clsx(
+        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
+        isAnchorLink ? 'pl-7' : 'pl-4',
+        active
+          ? 'text-zinc-900 font-semibold'
+          : 'text-zinc-900 hover:text-green-900 hover:bg-green-100 hover:rounded-md',
+      )}
+    >
+        <span className="truncate">{children}</span>
+    </button>
 
   )
 }

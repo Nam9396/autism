@@ -9,10 +9,24 @@ import { Header } from '@/components/Header'
 import { Logo } from '@/components/Logo'
 import { Navigation } from '@/components/Navigation'
 import { SectionProvider } from '@/components/SectionProvider'
+import { useEffect } from 'react'
 
 
 export function Layout({ children, allSections }) {
   let pathname = usePathname()
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    const element = document.getElementById(hash);
+
+    if (element) {
+      // Delay the scroll to avoid conflicts with browser behavior
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100); // Adjust the delay if necessary
+    }
+  }, []);
+  
   return (
     <SectionProvider sections={allSections[pathname] ?? []}>
       <div className="h-full lg:ml-72 xl:ml-80">
