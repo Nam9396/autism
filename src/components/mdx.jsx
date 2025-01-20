@@ -4,11 +4,25 @@ import clsx from 'clsx'
 import { Feedback } from '@/components/Feedback'
 import { Heading } from '@/components/Heading'
 import { Prose } from '@/components/Prose'
+import { useEffect } from 'react'
 
 export const a = Link
 export { Button } from '@/components/Button'
 
 export function wrapper({ children }) {
+
+  useEffect(() => {
+      const hash = window.location.hash.replace('#', '');
+      const element = document.getElementById(hash);
+  
+      if (element) {
+        // Delay the scroll to avoid conflicts with browser behavior
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100); // Adjust the delay if necessary
+      }
+    }, []);
+
   return (
     <article className="flex h-full flex-col pb-10 pt-16 md:w-[85%] m-auto">
       <Prose className="flex-auto">{children}</Prose>
