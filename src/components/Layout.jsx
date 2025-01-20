@@ -22,7 +22,7 @@ export function Layout({ children, allSections }) {
       // Delay the scroll to avoid conflicts with browser behavior
       setTimeout(() => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100); // Adjust the delay if necessary
+      }, 1000); // Adjust the delay if necessary
     }
   }, []); 
 
