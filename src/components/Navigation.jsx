@@ -125,6 +125,13 @@ function NavigationGroup({ group, className }) {
   let isActiveGroup =
     group.links.findIndex((link) => link.href === pathname) !== -1
 
+  const handleAnchorClick = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <li className={clsx('relative mt-6', className)}>
       <motion.h2
@@ -170,13 +177,24 @@ function NavigationGroup({ group, className }) {
                   >
                     {sections.map((section) => (
                       <li key={section.id}>
-                        <NavLink
+                        {/* <NavLink
                           href={`${link.href}#${section.id}`}
                           tag={section.tag}
                           isAnchorLink
                         >
                           {section.title}
-                        </NavLink>
+                        </NavLink> */}
+                        <a
+                          href={`${link.href}#${section.id}`}
+                          tag={section.tag}
+                          isAnchorLink
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent default anchor link behavior
+                            handleAnchorClick(section.id);
+                          }}
+                        >
+                          {section.title}
+                        </a>
                       </li>
                     ))}
                   </motion.ul>
