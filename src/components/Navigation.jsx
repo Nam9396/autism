@@ -11,6 +11,8 @@ import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
 
+import { useRouter } from 'next/navigation'
+
 function useInitialValue(value, condition = true) {
   let initialValue = useRef(value).current
   return condition ? initialValue : value
@@ -35,11 +37,32 @@ function NavLink({
   tag,
   active = false,
   isAnchorLink = false,
+  router
 }) {
+
   return (
-    <Link
-      href={href}
-      aria-current={active ? 'page' : undefined}
+    // <Link
+    //   href={href}
+    //   aria-current={active ? 'page' : undefined}
+    //   className={clsx(
+    //     'flex justify-between gap-2 py-1 pr-3 text-sm transition',
+    //     isAnchorLink ? 'pl-7' : 'pl-4',
+    //     active
+    //       ? 'text-zinc-900 font-semibold'
+    //       : 'text-zinc-900 hover:text-green-900 hover:bg-green-100 hover:rounded-md',
+    //   )}
+    // >
+    //   <span className="truncate">{children}</span>
+    //   {tag && (
+    //     <Tag variant="small" color="zinc">
+    //       {tag}
+    //     </Tag>
+    //   )}
+    // </Link>
+    
+    <button 
+      type="button" 
+      onClick={() => router.push(href)}
       className={clsx(
         'flex justify-between gap-2 py-1 pr-3 text-sm transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
@@ -48,13 +71,9 @@ function NavLink({
           : 'text-zinc-900 hover:text-green-900 hover:bg-green-100 hover:rounded-md',
       )}
     >
-      <span className="truncate">{children}</span>
-      {tag && (
-        <Tag variant="small" color="zinc">
-          {tag}
-        </Tag>
-      )}
-    </Link>
+        <span className="truncate">{children}</span>
+    </button>
+
   )
 }
 
@@ -112,7 +131,7 @@ function ActivePageMarker({ group, pathname }) {
   )
 }
 
-function NavigationGroup({ group, className }) {
+function NavigationGroup({ group, className, router }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
@@ -151,7 +170,7 @@ function NavigationGroup({ group, className }) {
         <ul role="list" className="border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === pathname}>
+              <NavLink href={link.href} active={link.href === pathname} router={router}>
                 {link.title}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
@@ -174,6 +193,7 @@ function NavigationGroup({ group, className }) {
                           href={`${link.href}#${section.id}`}
                           tag={section.tag}
                           isAnchorLink
+                          router={router}
                         >
                           {section.title}
                         </NavLink>
@@ -233,6 +253,7 @@ export const navigation = [
 ]
 
 export function Navigation(props) {
+  const router = useRouter()
   return (
     <nav {...props}>
       <ul role="list">
@@ -244,6 +265,7 @@ export function Navigation(props) {
             key={group.title}
             group={group}
             className={groupIndex === 0 ? 'md:mt-0' : ''}
+            router={router}
           />
         ))}
         <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
