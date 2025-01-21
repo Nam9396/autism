@@ -16,10 +16,12 @@ export function ScrollHandler() {
       }
     } else {
     //   window.scrollTo({ top: '0', behavior: 'smooth' })
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+      }, 5000)
     }
   }, [pathname])
 
