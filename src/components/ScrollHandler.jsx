@@ -17,12 +17,8 @@ export function ScrollHandler() {
         }, 1000)
       }
     } else {
-    //   window.scrollTo({ top: '0', behavior: 'smooth' })
       setTimeout(() => {
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-            behavior: "smooth",
-          });
+        window.scrollTo({ top: '0', behavior: 'smooth' })
       }, 1000)
     }
   }, [pathname])
