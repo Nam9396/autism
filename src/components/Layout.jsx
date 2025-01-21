@@ -9,23 +9,13 @@ import { Header } from '@/components/Header'
 import { Logo } from '@/components/Logo'
 import { Navigation } from '@/components/Navigation'
 import { SectionProvider } from '@/components/SectionProvider'
-import { useEffect } from 'react'
+import { ScrollHandler } from './ScrollHandler'
 
 
 export function Layout({ children, allSections }) {
   let pathname = usePathname()
 
-  // useEffect(() => {
-  //   const hash = window.location.hash.replace('#', '');
-  //   const element = document.getElementById(hash);
 
-  //   if (element) {
-  //     // Delay the scroll to avoid conflicts with browser behavior
-  //     setTimeout(() => {
-  //       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //     }, 100); // Adjust the delay if necessary
-  //   }
-  // }, []);
 
   return (
     <SectionProvider sections={allSections[pathname] ?? []}>
@@ -45,6 +35,7 @@ export function Layout({ children, allSections }) {
           </div>
         </motion.header>
         <div className="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
+          <ScrollHandler />
           <main className="flex-auto">{children}</main>
           <Footer />
         </div>
