@@ -14,7 +14,7 @@ export function ScrollHandler() {
       if (element) { 
         setTimeout(() => {
           element.scrollIntoView({ block: 'start', behavior: 'smooth' })
-        }, 3000)
+        }, 1000)
       }
     } else {
     //   window.scrollTo({ top: '0', behavior: 'smooth' })
@@ -23,7 +23,7 @@ export function ScrollHandler() {
           top: document.documentElement.scrollHeight,
             behavior: "smooth",
           });
-      }, 3000)
+      }, 1000)
     }
   }, [pathname])
 
