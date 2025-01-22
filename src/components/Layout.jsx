@@ -9,7 +9,7 @@ import { Header } from '@/components/Header'
 import { Logo } from '@/components/Logo'
 import { Navigation } from '@/components/Navigation'
 import { SectionProvider } from '@/components/SectionProvider'
-import { ScrollHandler } from './ScrollHandler'
+// import { ScrollHandler } from './ScrollHandler'
 
 
 export function Layout({ children, allSections }) {
@@ -35,7 +35,7 @@ export function Layout({ children, allSections }) {
           </div>
         </motion.header>
         <div className="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
-          <ScrollHandler />
+          {/* <ScrollHandler /> */}
           <main className="flex-auto">{children}</main>
           <Footer />
         </div>
